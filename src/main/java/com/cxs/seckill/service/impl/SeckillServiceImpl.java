@@ -50,7 +50,7 @@ public class SeckillServiceImpl implements SeckillService {
     if (seckill == null) {
       return new Exposer(false, seckillId);
     }
-    Date startTime = seckill.getStartTIme();
+    Date startTime = seckill.getStartTime();
     Date endTime = seckill.getEndTime();
     Date nowTime = new Date();
     if (nowTime.getTime() < startTime.getTime()

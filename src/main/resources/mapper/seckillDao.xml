@@ -38,9 +38,9 @@
           seckill_id AS seckillId,
           name,
           number,
-          start_time as startTime,
-          end_time as endTime,
-          create_time as createTime
+          start_time,
+          end_time ,
+          create_time
         from seckill
         ORDER BY create_time DESC
         limit #{offset}, #{limit}

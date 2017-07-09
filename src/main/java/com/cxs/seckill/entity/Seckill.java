@@ -38,12 +38,12 @@ public class Seckill {
     this.name = name;
   }
 
-  public Date getStartTIme() {
+  public Date getStartTime() {
     return startTime;
   }
 
-  public void setStartTIme(Date startTIme) {
-    this.startTime = startTIme;
+  public void setStartTime(Date startTime) {
+    this.startTime = startTime;
   }
 
   public Date getEndTime() {

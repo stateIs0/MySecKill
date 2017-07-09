@@ -55,7 +55,7 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.2.8</version>
+            <version>3.3.0</version>
         </dependency>
         <!--mybatis 自身实现的spring整合依赖，spring开发的依赖是ibatis-spring-->
         <dependency>
