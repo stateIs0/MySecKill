@@ -33,7 +33,7 @@ VALUES
 CREATE TABLE success_killed(
   'seckill_id' bigint NOT NULL comment '秒杀商品id',
   'user_phone' bigint NOT NULL comment '用户手机号',
-  'state' tinyint NOT NULL DEFAULT -1 comment '状态表示：-1:无效，0成功，1：已付款',
+  'state' tinyint NOT NULL DEFAULT 0 comment '状态表示：-1:无效，0成功，1：已付款',
   'create_time' TIMESTAMP NOT NULL comment '创建时间',
   PRIMARY KEY (seckil_id,user_phone),--联合主键
   KEY idx_create_time(create_time)

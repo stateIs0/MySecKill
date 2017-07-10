@@ -65,7 +65,7 @@ public class Seckill {
   @Override
   public String toString() {
     return "Seckill{" + "seckillId=" + seckillId + ", number=" + number + ", name='" + name
-        + '\'' + ", startTIme=" + startTime + ", endTime=" + endTime + ", createTime="
+        + '\'' + ", startTime=" + startTime + ", endTime=" + endTime + ", createTime="
         + createTime + '}';
   }
 }

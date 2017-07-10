@@ -1,6 +1,8 @@
 package com.cxs.seckill.dao;
 
 import com.cxs.seckill.entity.Seckill;
+import java.util.Map;
+import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
@@ -38,4 +40,7 @@ public interface SeckillDao {
    * @return list
    */
   List<Seckill> queryAll(@Param("offset") int offset, @Param("limit") int limit);
+
+  void killByProcedure(Map<String, Object> map);
+
 }

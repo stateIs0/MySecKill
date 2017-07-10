@@ -48,9 +48,9 @@ public class SeckillServiceTest {
    */
   @Test
   public void exportSeckillUrlTest() throws Exception {
-    long id = 1000;
+    long id = 1001;
     Exposer exposer = seckillService.exportSeckillUrl(id);
-    logger.info("exposer:{}", exposer);
+      logger.info("exposer:{}", exposer);
     if (exposer.isExposed()) {
       long phone = 12222222122L;
       String md5 = "c89565d7b0990dc45a889c9c632210c3";
@@ -90,31 +90,20 @@ public class SeckillServiceTest {
 //    }
 
 
-    /*
-    Logging initialized using 'class org.apache.ibatis.logging.stdout.StdOutImpl' adapter.
-    Creating a new SqlSession
-    Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2415fc55]
-    JDBC Connection [com.mysql.jdbc.JDBC4Connection@48b67364] will be managed by Spring
-    ==>  Preparing: UPDATE seckill SET number = number - 1 WHERE seckill_id = ? AND start_time <= ? AND end_time >= ? AND number > 0
-    ==> Parameters: 1000(Long), 2017-07-09 16:38:31.158(Timestamp), 2017-07-09 16:38:31.158(Timestamp)
-    <==    Updates: 1
-    Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2415fc55]
-    Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2415fc55] from current transaction
-    ==>  Preparing: INSERT ignore INTO success_killed(seckill_id, user_phone) VALUES (?, ?)
-    ==> Parameters: 1000(Long), 12222222122(Long)
-    <==    Updates: 1
-    Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2415fc55]
-    Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2415fc55] from current transaction
-    ==>  Preparing: select sk.seckill_id, sk.user_phone, sk.state, sk.create_time, s.seckill_id "seckil.seckill_id", s.name "seckill.name", s.number "seckill.number", s.start_time "seckill.startTime", s.end_time "seckill.end_time", s.create_time "seckill.create_time" from success_killed sk join seckill s on sk.seckill_id = s.seckill_id where sk.seckill_id = ? AND sk.user_phone = ?
-    ==> Parameters: 1000(Long), 12222222122(Long)
-    <==    Columns: seckill_id, user_phone, state, create_time, seckil.seckill_id, seckill.name, seckill.number, seckill.startTime, seckill.end_time, seckill.create_time
-    <==        Row: 1000, 12222222122, -1, 2017-07-09 16:38:31.0, 1000, 1000元秒杀iphone6, 95, 2017-07-09 16:38:31.0, 2018-01-02 00:00:00.0, 2017-07-07 20:44:16.0
-    <==      Total: 1
-    Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2415fc55]
-    Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2415fc55]
-    Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2415fc55]
-    Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2415fc55]
-     */
+  }
+
+
+  @Test
+  public void executeSeckillProcedure() throws Exception {
+    long seckilId = 1001;
+    long phone = 12221222422L;
+    Exposer exposer = seckillService.exportSeckillUrl(seckilId);
+    if (exposer.isExposed()){
+      String md5 =exposer.getMd5();
+      SeckillExecution seckillExecution = seckillService.executeSeckillProcedure(seckilId, phone, md5);
+      logger.info(seckillExecution.getStateInfo());
+    }
+
   }
 
 }
