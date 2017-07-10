@@ -59,12 +59,9 @@ public class SeckillController {
     return "detail";
   }
 
-  @RequestMapping(value = "/{seckillId}/exposer", method = RequestMethod.POST,
-      produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-
-  // ajax 返回的是jso
+  @RequestMapping(value = "/{seckillId}/exposer", method = RequestMethod.GET)
   @ResponseBody
-  public SeckillResult<Exposer> exposer(Long seckillId) {
+  public SeckillResult<Exposer> exposer(@PathVariable("seckillId")Long seckillId) {
     SeckillResult<Exposer> result = null;
     try {
       Exposer exposer = seckillService.exportSeckillUrl(seckillId);
@@ -73,12 +70,13 @@ public class SeckillController {
       logger.error(exp.getLocalizedMessage(), exp);
       result = new SeckillResult<Exposer>(false, exp.getMessage());
     }
+    logger.error(result.toString());
     return result;
   }
 
   @RequestMapping(value = "/{seckillId}/{md5}/execution",
       produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-
+  @ResponseBody
   public SeckillResult<SeckillExecution> executorSeckill(@PathVariable("seckillId") Long seckillId,
       @PathVariable("md5") String md5,@CookieValue(value = "killPhone",required = false) Long userPhone) {
     // spring mvc valid 是一种参数验证，可节省很多验证步骤
@@ -103,7 +101,7 @@ public class SeckillController {
 
   @RequestMapping(value = "/time/now",
       produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-
+  @ResponseBody
   public SeckillResult<Long> time(){
     return new SeckillResult<Long>(true, new Date().getTime());
   }
